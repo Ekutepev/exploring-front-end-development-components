@@ -13,8 +13,8 @@ const Navbar = () => {
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center
                       justify-between">
         <h1 className="text-lg font-bold text-slate-900">
-          <a href="/" className="hover:text-slate-700">
-          New Generation High School
+          <a href="" className="hover:text-slate-700">
+            New Generation High School
           </a>
         </h1>
 
