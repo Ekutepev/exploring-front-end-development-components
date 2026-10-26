@@ -5,6 +5,7 @@ import { students } from "@/data/students";
 export default function Home() {
   return (
     <main>
+
       <section id="class-average">
         <GradeAverageChart students={students} />
       </section>
