@@ -33,7 +33,7 @@ const StudentCard = ({ student, onRemove }: StudentCardProps) => {
         <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
             {/* Name and grade */}
             <div>
-                <h3 className="text-lg font-semibold text-slate-900 break-words">
+                <h3 className="text-lg font-semibold text-slate-900 wrap-break-word">
                     {student.firstName} {student.lastName}
                 </h3>
                 <p className="text-sm text-slate-600">Grade {student.grade}</p>
@@ -49,18 +49,18 @@ const StudentCard = ({ student, onRemove }: StudentCardProps) => {
                         </span>
                     )}
                 </div>
-            )}
+            )} 
 
             {/* Buttons: toggle details, and ask StudentPortal to remove this student */}
             <div className="mt-auto flex flex-wrap gap-2">
                 <button
                     onClick={() => setShowDetails(!showDetails)}
-                    className="rounded border border-blue-600 px-4 py-2 text-blue-600 hover:bg-blue-50 cursor-pointer transition">
+                    className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">
                     {showDetails ? "Hide details" : "Show details"}
                 </button>
                 <button
                     onClick={() => onRemove(student.id)}
-                    className="rounded bg-red-600 px-4 py-2 text-white hover:bg-red-700 cursor-pointer transition">
+                    className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 cursor-pointer transition">
                     Remove
                 </button>
             </div>
