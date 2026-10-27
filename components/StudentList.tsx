@@ -23,7 +23,7 @@ const StudentList = ({ students, onRemove }: StudentListProps) => {
     // Empty list: show a message instead of the grid
     if (students.length === 0) {
         return (
-            <p className="rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center text-slate-600">
+            <p className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
                 No students to show.
             </p>
         );
@@ -31,7 +31,7 @@ const StudentList = ({ students, onRemove }: StudentListProps) => {
 
     // Render: one StudentCard per student
     return (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {students.map((student) => (
                 <StudentCard
                     key={student.id}

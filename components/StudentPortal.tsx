@@ -75,7 +75,7 @@ const StudentPortal = () => {
                     value={searchText}
                     onChange={setSearchText} />
                 <button onClick={handleClearAll}
-                    className=" rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">
+                    className="block ml-auto rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition mt-2 mb-2">
                     Clear all
                 </button>
                 <StudentList

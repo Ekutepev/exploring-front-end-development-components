@@ -52,7 +52,7 @@ const StudentCard = ({ student, onRemove }: StudentCardProps) => {
             )} 
 
             {/* Buttons: toggle details, and ask StudentPortal to remove this student */}
-            <div className="mt-auto flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
                 <button
                     onClick={() => setShowDetails(!showDetails)}
                     className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">

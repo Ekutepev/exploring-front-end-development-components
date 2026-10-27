@@ -23,8 +23,8 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
     // State: one value per input, starting at the values from the spec
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [grade, setGrade] = useState(9);
-    const [average, setAverage] = useState(70);
+    const [grade, setGrade] = useState("9");
+    const [average, setAverage] = useState("70");
 
     // Handlers
     const handleAdd = () => {
@@ -33,14 +33,18 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
             return;
         }
 
+        if (grade === "" || average === "") {
+            return;
+        }
+
         // Send the new student up to StudentPortal
-        onAdd(firstName.trim(), lastName.trim(), grade, average);
+        onAdd(firstName.trim(), lastName.trim(), Number(grade), Number(average));
 
         // Reset the inputs back to their starting values
         setFirstName("");
         setLastName("");
-        setGrade(9);
-        setAverage(70);
+        setGrade("9");
+        setAverage("70");
     };
 
     // Render
@@ -52,7 +56,7 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
                     type="text"
-                    className="w-full rounded border border-slate-500 px-4 py-2"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm"
                 />
             </label>
             <label className="flex flex-col gap-1">
@@ -61,7 +65,7 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
                     type="text"
-                    className="w-full rounded border border-slate-500 px-4 py-2" />
+                    className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
             </label>
             <label className="flex flex-col gap-1">
                 Grade:
@@ -69,9 +73,10 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     value={grade}
                     min={9}
                     max={12}
-                    onChange={(e) => setGrade(Number(e.target.value))}
+                    onChange={(e) => setGrade(e.target.value)}
                     type="number"
-                    className="w-full rounded border border-slate-500 px-4 py-2" />
+                    placeholder="must be between 9 - 12"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
             </label>
             <label className="flex flex-col gap-1">
                 Average:
@@ -79,13 +84,14 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     value={average}
                     min={0}
                     max={100}
-                    onChange={(e) => setAverage(Number(e.target.value))}
+                    onChange={(e) => setAverage(e.target.value)}
                     type="number"
-                    className="w-full rounded border border-slate-500 px-4 py-2" />
+                    placeholder="Must be between 0 - 100"
+                    className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
             </label>
 
             <button onClick={handleAdd}
-                className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">
+                className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition mb-4">
                 Add student
             </button>
 
