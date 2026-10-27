@@ -1,4 +1,3 @@
-import Image from "next/image";
 import GradeAverageChart from "@/components/GradeAverageChart";
 import { students } from "@/data/students";
 import StudentPortal from "@/components/StudentPortal";
