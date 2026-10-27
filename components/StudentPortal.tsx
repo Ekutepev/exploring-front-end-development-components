@@ -14,6 +14,7 @@
 import { Student, students, } from "@/data/students";
 import SearchBox from "./SearchBox";
 import AddStudent from "./AddStudent";
+import StudentList from "./StudentList";
 import { useState } from "react";
 import StatsPanel from "./StatsPanel";
 
@@ -77,12 +78,9 @@ const StudentPortal = () => {
                     className=" rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">
                     Clear all
                 </button>
-                <ul className="flex flex-col gap-2 "> {/* this is temp as i need the StudentList to add here*/}
-                    {filteredStudents.map((student) => (<li key={student.id} className="flex items-center justify-between">
-                        {student.firstName} {student.lastName}
-                        <button onClick={() => handleRemove(student.id)} className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">Remove</button>
-                    </li>))}
-                </ul>
+                <StudentList
+                    students={filteredStudents}
+                    onRemove={handleRemove} />
             </section>
             {/* Add a student section */}
             <section id="add-student">
