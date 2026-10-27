@@ -36,7 +36,7 @@ const Navbar = () => {
               </a>
             </li>
              <li>
-              <a href="#class-Average" className="text-slate-700 hover:text-slate-900 p-7">
+              <a href="#class-average" className="text-slate-700 hover:text-slate-900 p-7">
                 Class Average
               </a>
             </li>
