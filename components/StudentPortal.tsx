@@ -16,6 +16,7 @@ import SearchBox from "./SearchBox";
 import AddStudent from "./AddStudent";
 import StudentList from "./StudentList";
 import { useState } from "react";
+import StatsPanel from "./StatsPanel";
 
 // Component
 const StudentPortal = () => {
@@ -23,10 +24,6 @@ const StudentPortal = () => {
     const [studentList, setStudentList] = useState<Student[]>(students);
     const [searchText, setSearchText] = useState("");
 
-    // Derived values: worked out from the list on every render, not stored in state
-    const total = studentList.length;
-    const honourRoll = studentList.filter((student) => student.average >= 80).length;
-    const graduating = studentList.filter((student) => student.grade === 12).length;
     // Students whose full name matches the search text (capitals do not matter)
     const filteredStudents = studentList.filter((student) => `${student.firstName} ${student.lastName}`
         .toLowerCase().includes(searchText.toLowerCase())
@@ -64,11 +61,10 @@ const StudentPortal = () => {
         <div className="max-w-6xl mx-auto px-4 flex flex-col gap-8 w-full">
             {/* Overview section: the three numbers about the list */}
             <section id="overview">
-                <h2>
+                <h2 className="mb-4 text-2xl font-bold text-slate-900">
                     Overview
                 </h2>
-                <p>Students: {total}</p>
-                {/* honourRoll and graduating goes here when statePanel is done */}
+                <StatsPanel students={studentList} />
             </section>
             {/* Students section: search box, Clear all and the list */}
             <section id="students">
