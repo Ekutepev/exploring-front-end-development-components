@@ -15,6 +15,7 @@ import { Student, students, } from "@/data/students";
 import SearchBox from "./SearchBox";
 import AddStudent from "./AddStudent";
 import StudentList from "./StudentList";
+import GradeAverageChart from "./GradeAverageChart";
 import { useState } from "react";
 import StatsPanel from "./StatsPanel";
 
@@ -86,6 +87,10 @@ const StudentPortal = () => {
             <section id="add-student">
                 <h2>Add a Student</h2>
                 <AddStudent onAdd={handleAdd} />
+            </section>
+            {/* Class average section: uses the live list so it updates on add and remove */}
+            <section id="class-average">
+                <GradeAverageChart students={studentList} />
             </section>
         </div>
     );
