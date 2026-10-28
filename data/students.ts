@@ -1,5 +1,15 @@
 
-// id, first name, last name, grade (9-12), average (0-100)
+/*
+ * File: data/students.ts
+ * Author: Harderick Dhillon
+ * Date: 2026-10-28
+ * 
+ * Defines the shared student model and initial records.
+ * Exports Student interface and students array containing each student's
+ *          id, name, grade (9-12), and average (0-100).
+ */
+
+// Describes the fields stored for each student.
 export interface Student {
     id: number;
     firstName: string;
@@ -8,6 +18,7 @@ export interface Student {
     average: number;
 }
 
+// Initial student records shown when the portal loads.
 export const students: Student[] = [
     { id: 1, firstName: 'Alex', lastName: 'Smith', grade: 9, average: 20 },
     { id: 2, firstName: 'Karen', lastName: 'Arnold', grade: 9, average: 57 },
