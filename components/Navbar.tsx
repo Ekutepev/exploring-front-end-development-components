@@ -12,31 +12,31 @@ const Navbar = () => {
     <header className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-4 lg:flex-row lg:items-center lg:justify-between">
         <h1 className="text-lg font-bold text-slate-900">
-          <a href="" className="hover:text-slate-700">
+          <a href="#overview" className="hover:text-slate-700">
             New Generation High School
           </a>
         </h1>
 
         {/* Navigation Links */}
         <nav aria-label="Main navigation">
-          <ul className="flex items-center gap-4 text-sm font-medium">
+          <ul className="flex flex-wrap items-center gap-4 text-sm font-medium">
             <li>
-              <a href="#overview" className="text-slate-700 hover:text-slate-900 p-7">
+              <a href="#overview" className="text-slate-700 hover:text-slate-900 px-4 py-2">
                 Overview
               </a>
             </li>
             <li>
-              <a href="#students" className="text-slate-700 hover:text-slate-900 p-7">
+              <a href="#students" className="text-slate-700 hover:text-slate-900 px-4 py-2">
                 Students
               </a>
             </li>
             <li>
-              <a href="#add-student" className="text-slate-700 hover:text-slate-900 p-7">
-                Add a Student
+              <a href="#add-student" className="text-slate-700 hover:text-slate-900 px-4 py-2">
+                Add a student
               </a>
             </li>
-             <li>
-              <a href="#class-average" className="text-slate-700 hover:text-slate-900 p-7">
+            <li>
+              <a href="#class-average" className="text-slate-700 hover:text-slate-900 px-4 py-2">
                 Class Average
               </a>
             </li>

@@ -1,5 +1,7 @@
 import StudentPortal from "@/components/StudentPortal";
 
-export default function Home() {
+const Home = () => {
   return <StudentPortal />;
-}
+};
+
+export default Home;
