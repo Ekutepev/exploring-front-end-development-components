@@ -69,7 +69,7 @@ const StudentPortal = () => {
             </section>
             {/* Students section: search box, Clear all and the list */}
             <section id="students">
-                <h2>
+                <h2 className="mb-4 text-2xl font-bold text-slate-900">
                     Students
                 </h2>
                 <SearchBox
@@ -85,7 +85,7 @@ const StudentPortal = () => {
             </section>
             {/* Add a student section */}
             <section id="add-student">
-                <h2>Add a Student</h2>
+                <h2 className="mb-4 text-2xl font-bold text-slate-900">Add a student</h2>
                 <AddStudent onAdd={handleAdd} />
             </section>
             {/* Class average section: uses the live list so it updates on add and remove */}
