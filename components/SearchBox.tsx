@@ -24,7 +24,7 @@ const SearchBox = ({ value, onChange }: SearchBoxProps) => {
             onChange={(e) => onChange(e.target.value)}
             type="text"
             placeholder="Search by Name"
-            className="w-full rounded border border-slate-500 px-4 py-2" />
+            className="w-full rounded-lg border border-slate-200 bg-white p-6 shadow-sm" />
     )
 };
 

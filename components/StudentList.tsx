@@ -31,7 +31,7 @@ const StudentList = ({ students, onRemove }: StudentListProps) => {
 
     // Render: one StudentCard per student
     return (
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {students.map((student) => (
                 <StudentCard
                     key={student.id}
