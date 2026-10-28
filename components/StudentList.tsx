@@ -23,7 +23,7 @@ const StudentList = ({ students, onRemove }: StudentListProps) => {
     // Empty list: show a message instead of the grid
     if (students.length === 0) {
         return (
-            <p className="rounded-lg border border-slate-200 bg-white p-6 shadow-sm">
+            <p className="rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center text-slate-600">
                 No students to show.
             </p>
         );
