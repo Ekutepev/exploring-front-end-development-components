@@ -24,7 +24,7 @@ interface GradeAverageChartProps {
 }
 
 const GRADES = [9, 10, 11, 12];
-const DEFAULT_PASS_MARK = 50;
+const DEFAULT_PASS_MARK = 60;
 
 
 /*
