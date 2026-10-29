@@ -15,6 +15,7 @@ import { Student, students, } from "@/data/students";
 import SearchBox from "./SearchBox";
 import AddStudent from "./AddStudent";
 import StudentList from "./StudentList";
+import GradeAverageChart from "./GradeAverageChart";
 import { useState } from "react";
 import StatsPanel from "./StatsPanel";
 
@@ -68,14 +69,14 @@ const StudentPortal = () => {
             </section>
             {/* Students section: search box, Clear all and the list */}
             <section id="students">
-                <h2>
+                <h2 className="mb-4 text-2xl font-bold text-slate-900">
                     Students
                 </h2>
                 <SearchBox
                     value={searchText}
                     onChange={setSearchText} />
                 <button onClick={handleClearAll}
-                    className=" rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">
+                    className="block ml-auto rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition mt-2 mb-2">
                     Clear all
                 </button>
                 <StudentList
@@ -84,8 +85,12 @@ const StudentPortal = () => {
             </section>
             {/* Add a student section */}
             <section id="add-student">
-                <h2>Add a student</h2>
+                <h2 className="mb-4 text-2xl font-bold text-slate-900">Add a student</h2>
                 <AddStudent onAdd={handleAdd} />
+            </section>
+            {/* Class average section: uses the live list so it updates on add and remove */}
+            <section id="class-average">
+                <GradeAverageChart students={studentList} />
             </section>
         </div>
     );

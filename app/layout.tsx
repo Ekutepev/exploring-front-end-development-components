@@ -11,19 +11,24 @@
  */
 
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 import "./globals.css";
 import Footer from "@/components/Footer";
 
+// Metadata
 export const metadata: Metadata = {
   title: "New Generation High School",
   description: "Student Portal",
 };
 
+// Props
+interface RootLayoutProps {
+  children: ReactNode;
+}
 
-
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+// Component 
+const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
       lang="en">
@@ -38,4 +43,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

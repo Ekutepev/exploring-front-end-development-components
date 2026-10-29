@@ -1,7 +1,7 @@
 /*
  * File: components/GradeAverageChart.tsx
  * Author: Harderick Dhillon
- * Date: 2026-10-26
+ * Date: 2026-10-28
  *
  * Shows the class average for one grade at a time, measured against a pass
  * mark that the person types in. Input: the full list of students, passed in
@@ -9,7 +9,8 @@
  * and the pass mark text in state, then works out the average, student count
  * and pass/fail status from them on every render. Output: a grade dropdown, a
  * pass mark text field, the class average, and a bar that is green at or
- * above the pass mark, yellow below it, and red when 25% or more below it.
+ * above the pass mark, yellow below it down to half the mark, and red below
+ * half the pass mark.
  */
 
 "use client";
@@ -17,12 +18,13 @@
 import { useState } from "react";
 import { Student } from "@/data/students";
 
+// Props
 interface GradeAverageChartProps {
   students: Student[];
 }
 
 const GRADES = [9, 10, 11, 12];
-const DEFAULT_PASS_MARK = 50;
+const DEFAULT_PASS_MARK = 60;
 
 
 /*
@@ -68,7 +70,7 @@ const parsePassMark = (text: string): number | null => {
  * shown by colour alone.
  */
 const getStatus = (average: number, passMark: number) => {
-    if (average >= passMark) {
+  if (average >= passMark) {
     return { label: "At or above the pass mark", bar: "bg-green-600", text: "text-green-700" };
   }
   if (average >= passMark * 0.50) {
@@ -79,111 +81,114 @@ const getStatus = (average: number, passMark: number) => {
 
 
 const GradeAverageChart = ({ students }: GradeAverageChartProps) => {
+  // State
   const [selectedGrade, setSelectedGrade] = useState<number>(9);
   const [passMarkText, setPassMarkText] = useState<string>(String(DEFAULT_PASS_MARK));
+
+  // Derived values
   const typedPassMark = parsePassMark(passMarkText);
   const passMark = typedPassMark ?? DEFAULT_PASS_MARK;
   const average = classAverage(students, selectedGrade);
   const count = students.filter((student) => student.grade === selectedGrade).length;
   const status = average === null ? null : getStatus(average, passMark);
 
+  // Render
   return (
     <div>
-    
-    <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
+      <div className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:p-6">
         <h2 className="text-3xl font-semibold text-slate-900 pb-3"> Class Average</h2>
-      <div className="flex flex-col gap-4 sm:flex-row">
-        <div className="sm:w-48">
-          <label htmlFor="grade-select" className="block text-sm font-medium text-slate-700">
-            Choose a grade
-          </label>
-          <select
-            id="grade-select"
-            value={selectedGrade}
-            onChange={(event) => setSelectedGrade(Number(event.target.value))}
-            className="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
-          >
-            {GRADES.map((grade) => (
-              <option key={grade} value={grade}>
-                Grade {grade}
-              </option>
-            ))}
-          </select>
-        </div>
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="sm:w-48">
+            <label htmlFor="grade-select" className="block text-sm font-medium text-slate-700">
+              Choose a grade
+            </label>
+            <select
+              id="grade-select"
+              value={selectedGrade}
+              onChange={(event) => setSelectedGrade(Number(event.target.value))}
+              className="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2 text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500"
+            >
+              {GRADES.map((grade) => (
+                <option key={grade} value={grade}>
+                  Grade {grade}
+                </option>
+              ))}
+            </select>
+          </div>
 
-        <div className="sm:w-48">
-          <label htmlFor="pass-mark" className="block text-sm font-medium text-slate-700">
-            Pass mark (0 to 100)
-          </label>
-          <input
-            id="pass-mark"
-            type="text"
-            inputMode="decimal"
-            value={passMarkText}
-            onChange={(event) => setPassMarkText(event.target.value)}
-            aria-invalid={typedPassMark === null}
-            className={`mt-1 w-full rounded-md border bg-white px-3 py-2 text-slate-900 focus:outline-none focus-visible:ring-2 ${
-              typedPassMark === null
-                ? "border-red-500 focus-visible:ring-red-500"
-                : "border-slate-300 focus-visible:ring-indigo-500"
-            }`}
-          />
-        </div>
-      </div>
-
-      {typedPassMark === null && (
-        <p className="mt-2 text-sm text-red-700">
-          Enter a number from 0 to 100. Using {DEFAULT_PASS_MARK} until then.
-        </p>
-      )}
-
-      <div className="mt-6" aria-live="polite">
-        <h3 className="text-lg font-semibold text-slate-900">
-          Grade {selectedGrade} class average
-        </h3>
-        {average === null || status === null ? (
-          <p className="mt-1 text-slate-600">No students in grade {selectedGrade}.</p>
-        ) : (
-          <>
-            <p className="mt-1 text-slate-600">
-              <span className={`text-3xl font-bold ${status.text}`}>
-                {average.toFixed(1)}%
-              </span>{" "}
-              across {count} {count === 1 ? "student" : "students"}
-            </p>
-            <p className={`mt-1 text-sm font-medium ${status.text}`}>{status.label}</p>
-          </>
-        )}
-      </div>
-
-      <div className="mt-4">
-        <div className="relative">
-          <div className="h-6 w-full overflow-hidden rounded bg-slate-100">
-            <div
-              className={`h-full rounded transition-all duration-300 ${
-                status === null ? "bg-slate-300" : status.bar
+          <div className="sm:w-48">
+            <label htmlFor="pass-mark" className="block text-sm font-medium text-slate-700">
+              Pass mark (0 to 100)
+            </label>
+            <input
+              id="pass-mark"
+              type="text"
+              inputMode="decimal"
+              value={passMarkText}
+              onChange={(event) => setPassMarkText(event.target.value)}
+              aria-invalid={typedPassMark === null}
+              className={`mt-1 w-full rounded-md border bg-white px-3 py-2 text-slate-900 focus:outline-none focus-visible:ring-2 ${
+                typedPassMark === null
+                  ? "border-red-500 focus-visible:ring-red-500"
+                  : "border-slate-300 focus-visible:ring-indigo-500"
               }`}
-              style={{ width: `${average ?? 0}%` }}
             />
           </div>
-          <div
-            className="absolute -bottom-1 -top-1 w-0.5 bg-slate-900"
-            style={{ left: `${passMark}%` }}
-          />
         </div>
 
-        <div className="relative mt-2 h-4 text-xs text-slate-500">
-          <span className="absolute left-0">0</span>
-          <span
-            className="absolute -translate-x-1/2 font-medium text-slate-900"
-            style={{ left: `${passMark}%` }}
-          >
-            Pass mark {passMark}
-          </span>
-          <span className="absolute right-0">100</span>
+        {typedPassMark === null && (
+          <p className="mt-2 text-sm text-red-700">
+            Enter a number from 0 to 100. Using {DEFAULT_PASS_MARK} until then.
+          </p>
+        )}
+
+        <div className="mt-6" aria-live="polite">
+          <h3 className="text-lg font-semibold text-slate-900">
+            Grade {selectedGrade} class average
+          </h3>
+          {average === null || status === null ? (
+            <p className="mt-1 text-slate-600">No students in grade {selectedGrade}.</p>
+          ) : (
+            <>
+              <p className="mt-1 text-slate-600">
+                <span className={`text-3xl font-bold ${status.text}`}>
+                  {average.toFixed(1)}%
+                </span>{" "}
+                across {count} {count === 1 ? "student" : "students"}
+              </p>
+              <p className={`mt-1 text-sm font-medium ${status.text}`}>{status.label}</p>
+            </>
+          )}
+        </div>
+
+        <div className="mt-4">
+          <div className="relative">
+            <div className="h-6 w-full overflow-hidden rounded bg-slate-100">
+              <div
+                className={`h-full rounded transition-all duration-300 ${
+                  status === null ? "bg-slate-300" : status.bar
+                }`}
+                style={{ width: `${average ?? 0}%` }}
+              />
+            </div>
+            <div
+              className="absolute -bottom-1 -top-1 w-0.5 bg-slate-900"
+              style={{ left: `${passMark}%` }}
+            />
+          </div>
+
+          <div className="relative mt-2 h-4 text-xs text-slate-500">
+            <span className="absolute left-0">0</span>
+            <span
+              className="absolute -translate-x-1/2 font-medium text-slate-900"
+              style={{ left: `${passMark}%` }}
+            >
+              Pass mark {passMark}
+            </span>
+            <span className="absolute right-0">100</span>
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };

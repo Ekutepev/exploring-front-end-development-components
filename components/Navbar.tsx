@@ -24,7 +24,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <nav aria-label="Main navigation">
-          <ul className="flex items-center gap-4 text-sm font-medium">
+          <ul className="flex flex-wrap items-center gap-4 text-sm font-medium">
             <li>
               <a href="#overview" className="inline-block py-2 text-slate-700 hover:text-slate-900">
                 Overview
