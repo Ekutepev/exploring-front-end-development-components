@@ -1,3 +1,15 @@
+/**
+ * FileName: layout.tsx
+ * Name: Jedidiah Belayneh
+ * Date: 2026/10/27-29
+ *
+ * This file defines the shared layout for the student portal.
+ * It receives the page content through the children prop.
+ * It arranges the Navbar, main content, and Footer vertically using Tailwind CSS.
+ * The main content expands to fill the available screen space, keeping the Footer at the bottom.
+ * It outputs the consistent page structure used throughout the application.
+ */
+
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Navbar from "@/components/Navbar";
