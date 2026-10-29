@@ -31,7 +31,7 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html
-      lang="en" className="scroll-mt-48 lg:scroll-mt-24">
+      lang="en" className="scroll-pt-48 scroll-smooth lg:scroll-pt-24 ">
       <body className="flex min-h-screen flex-col bg-slate-100">
         <Navbar />
 
