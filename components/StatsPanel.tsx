@@ -1,10 +1,15 @@
 /**
- * Three numbers about the whole list:
- *  how many students there are, 
- * how many are on the honour roll (an average of 80 or more), 
- * and how many are in grade 12. 
- * They change as soon as a student is added or removed. 
+ * FileName: StatsPanel.tsx
+ * Name: Jedidiah Belayneh
+ * Date: 2026/10/27-29
+ *
+ * This component displays statistics calculated from the student list.
+ * It receives an array of Student objects through the students prop.
+ * It processes the array to calculate total enrollment, honour roll students, and grade 12 students.
+ * These values are recalculated whenever the parent passes an updated student list.
+ * It outputs three responsive statistic cards without maintaining separate state.
  */
+
 
 import type { Student } from "@/data/students";
 

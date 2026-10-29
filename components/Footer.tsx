@@ -1,5 +1,15 @@
-//At the bottom of every page. 
-//Shows the school’s name, address, phone number and email. 
+/**
+ * FileName: Footer.tsx
+ * Name: Jedidiah Belayneh
+ * Date: 2026/10/27-29
+ *
+ * This component provides the contact information displayed at the bottom of the portal.
+ * It does not receive any props or manage state because the information is static.
+ * It organizes the school's name and contact details into a responsive two-column layout.
+ * Tailwind CSS controls the spacing and places the copyright below the contact information.
+ * It outputs a consistent footer with the school's address, phone number, email, and copyright.
+ */
+
 const Footer = () => {
   return (
     <footer className="mt-auto border-t border-slate-200 bg-white">

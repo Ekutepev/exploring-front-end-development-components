@@ -84,7 +84,7 @@ const StudentPortal = () => {
             </section>
             {/* Add a student section */}
             <section id="add-student">
-                <h2>Add a Student</h2>
+                <h2>Add a student</h2>
                 <AddStudent onAdd={handleAdd} />
             </section>
         </div>
