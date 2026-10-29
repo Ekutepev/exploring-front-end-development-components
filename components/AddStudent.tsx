@@ -25,20 +25,31 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
     const [lastName, setLastName] = useState("");
     const [grade, setGrade] = useState("9");
     const [average, setAverage] = useState("70");
+    const [errors, setErrors] = useState<{ firstName?: string; lastName?: string; grade?: string; average?: string}>({});
 
     // Handlers
     const handleAdd = () => {
-        // Do nothing if either name is empty
-        if (!firstName.trim() || !lastName.trim()) {
-            return;
+        const newErrors: typeof errors = {};
+        // check if name is empty
+        if (!firstName.trim()) newErrors.firstName = "First name is required";
+        if (!lastName.trim()) newErrors.lastName = "Last name is required";
+        // checks if grade is a Integer and that it is between 9 and 12
+        const gradeNumber = Number(grade);
+        if (grade === "" || !Number.isInteger(gradeNumber) || gradeNumber < 9 || gradeNumber > 12 ) {
+            newErrors.grade = "Grade must be a whole number between 9 and 12";
         }
-
-        if (grade === "" || average === "") {
-            return;
+        // checks the average if its an Integer and that it is between 0 and 100
+        const averageNumber = Number(average);
+        if (average === "" || !Number.isInteger(averageNumber) || averageNumber < 0 || averageNumber > 100) {
+            newErrors.average = "Average must be a whole number between 0 and 100";
         }
+        // sets the error 
+        setErrors(newErrors);
+        // this will stop if there is an error when adding in a student
+        if (Object.keys(newErrors).length > 0) return;
 
         // Send the new student up to StudentPortal
-        onAdd(firstName.trim(), lastName.trim(), Number(grade), Number(average));
+        onAdd(firstName.trim(), lastName.trim(), gradeNumber, averageNumber);
 
         // Reset the inputs back to their starting values
         setFirstName("");
@@ -58,6 +69,7 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     type="text"
                     className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm"
                 />
+                {errors.firstName && <span className="text-sm text-red-600">{errors.firstName}</span>}
             </label>
             <label className="flex flex-col gap-1">
                 Last Name:
@@ -66,6 +78,8 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     onChange={(e) => setLastName(e.target.value)}
                     type="text"
                     className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
+                    {errors.lastName && <span className="text-sm text-red-600">{errors.lastName}</span>}
+
             </label>
             <label className="flex flex-col gap-1">
                 Grade:
@@ -77,6 +91,8 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     type="number"
                     placeholder="must be between 9 - 12"
                     className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
+                    {errors.grade && <span className="text-sm text-red-600">{errors.grade}</span>}
+
             </label>
             <label className="flex flex-col gap-1">
                 Average:
@@ -88,6 +104,8 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     type="number"
                     placeholder="Must be between 0 - 100"
                     className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
+                    {errors.average && <span className="text-sm text-red-600">{errors.average}</span>}
+
             </label>
 
             <button onClick={handleAdd}
