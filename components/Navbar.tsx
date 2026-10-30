@@ -40,7 +40,7 @@ const Navbar = () => {
                 Add a student
               </a>
             </li>
-             <li>
+            <li>
               <a href="#class-average" className="inline-block py-2 text-slate-700 hover:text-slate-900">
                 Class Average
               </a>
