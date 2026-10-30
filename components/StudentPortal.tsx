@@ -4,9 +4,9 @@
 * Date: 2026/10/26
 * This component owns the data for the portal: the list of students and the search text, both kept in state.
 * It takes no props, and the starting list comes from data/students.ts.
-* On every render it works out the filtered list from the search text, plus the total, honour roll and grade 12 counts from the full list.
+* On every render it works out the filtered list from the search text, and passes the full list down to StatsPanel and GradeAverageChart so their numbers stay up to date.
 * Its handlers for Remove, Clear all and Add student always make a new array, and are passed down to the child components as callbacks.
-* It outputs the three sections of the page: Overview, Students and Add a student.
+* It outputs the four sections of the page: Overview, Students, Add a student and Class Average.
 */
 
 "use client";

@@ -78,8 +78,7 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     onChange={(e) => setLastName(e.target.value)}
                     type="text"
                     className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
-                    {errors.lastName && <span className="text-sm text-red-600">{errors.lastName}</span>}
-
+                {errors.lastName && <span className="text-sm text-red-600">{errors.lastName}</span>}
             </label>
             <label className="flex flex-col gap-1">
                 Grade:
@@ -91,8 +90,7 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     type="number"
                     placeholder="must be between 9 - 12"
                     className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
-                    {errors.grade && <span className="text-sm text-red-600">{errors.grade}</span>}
-
+                {errors.grade && <span className="text-sm text-red-600">{errors.grade}</span>}
             </label>
             <label className="flex flex-col gap-1">
                 Average:
@@ -104,8 +102,7 @@ const AddStudent = ({ onAdd }: AddStudentProps) => {
                     type="number"
                     placeholder="Must be between 0 - 100"
                     className="w-full rounded-lg border border-slate-200 bg-white px-4 py-2 shadow-sm" />
-                    {errors.average && <span className="text-sm text-red-600">{errors.average}</span>}
-
+                {errors.average && <span className="text-sm text-red-600">{errors.average}</span>}
             </label>
 
             <button onClick={handleAdd}

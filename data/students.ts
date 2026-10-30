@@ -1,12 +1,15 @@
-
 /*
  * File: data/students.ts
- * Author: Harderick Dhillon
- * Date: 2026-10-28
- * 
- * Defines the shared student model and initial records.
- * Exports Student interface and students array containing each student's
- *          id, name, grade (9-12), and average (0-100).
+ * Author: Harderick Dhillon, updated by Isaac Jenkins
+ * Date: 2026-10-29
+ *
+ * This file holds the starting data for the student portal and the Student
+ * interface that every component uses to describe a student. It takes no
+ * inputs; each student is written here with an id, first name, last name,
+ * grade (9 to 12) and average (a mark out of 100). No processing happens in
+ * this file, and the records are grouped by grade with an id that no other
+ * student shares. It outputs the Student interface and the students array,
+ * which StudentPortal copies into state when the page first loads.
  */
 
 // Describes the fields stored for each student.
@@ -50,6 +53,6 @@ export const students: Student[] = [
     { id: 24, firstName: 'Jack', lastName: 'Green', grade: 12, average: 80 },
     { id: 25, firstName: 'Amelia', lastName: 'Baker', grade: 12, average: 85 },
     { id: 26, firstName: 'Henry', lastName: 'Adams', grade: 12, average: 90 },
-    { id: 27, firstName: 'Lily', lastName: 'Nelson', grade: 12, average: 75 },
+    { id: 27, firstName: 'Lily', lastName: 'Ahmed', grade: 12, average: 75 },
     { id: 28, firstName: 'William', lastName: 'Carter', grade: 12, average: 88 },
 ];
