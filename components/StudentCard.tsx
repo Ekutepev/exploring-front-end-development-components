@@ -16,56 +16,56 @@ import { Student } from "@/data/students";
 
 // Props
 interface StudentCardProps {
-    student: Student;
-    onRemove: (id: number) => void;
+  student: Student;
+  onRemove: (id: number) => void;
 }
 
 // Component
 const StudentCard = ({ student, onRemove }: StudentCardProps) => {
-    // State: whether this card's details are showing
-    const [showDetails, setShowDetails] = useState(false);
+  // State: whether this card's details are showing
+  const [showDetails, setShowDetails] = useState(false);
 
-    // Derived value: honour roll is an average of 80 or more
-    const isHonourRoll = student.average >= 80;
+  // Derived value: honour roll is an average of 80 or more
+  const isHonourRoll = student.average >= 80;
 
-    // Render
-    return (
-        <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
-            {/* Name and grade */}
-            <div>
-                <h3 className="text-lg font-semibold text-slate-900 wrap-break-word">
-                    {student.firstName} {student.lastName}
-                </h3>
-                <p className="text-sm text-slate-600">Grade {student.grade}</p>
-            </div>
+  // Render
+  return (
+    <div className="flex flex-col gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
+      {/* Name and grade */}
+      <div>
+        <h3 className="text-lg font-semibold text-slate-900 wrap-break-word">
+          {student.firstName} {student.lastName}
+        </h3>
+        <p className="text-sm text-slate-600">Grade {student.grade}</p>
+      </div>
 
-            {/* Details: only shown once Show details is clicked */}
-            {showDetails && (
-                <div className="flex flex-wrap items-center gap-2">
-                    <p className="text-slate-700">Average: {student.average}</p>
-                    {isHonourRoll && (
-                        <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
-                            Honour roll
-                        </span>
-                    )}
-                </div>
-            )} 
-
-            {/* Buttons: toggle details, and ask StudentPortal to remove this student */}
-            <div className="flex flex-wrap gap-2">
-                <button
-                    onClick={() => setShowDetails(!showDetails)}
-                    className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">
-                    {showDetails ? "Hide details" : "Show details"}
-                </button>
-                <button
-                    onClick={() => onRemove(student.id)}
-                    className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 cursor-pointer transition">
-                    Remove
-                </button>
-            </div>
+      {/* Details: only shown once Show details is clicked */}
+      {showDetails && (
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-slate-700">Average: {student.average}</p>
+          {isHonourRoll && (
+            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
+              Honour roll
+            </span>
+          )}
         </div>
-    );
+      )} 
+
+      {/* Buttons: toggle details, and ask StudentPortal to remove this student */}
+      <div className="flex flex-wrap gap-2">
+        <button
+          onClick={() => setShowDetails(!showDetails)}
+          className="rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 cursor-pointer transition">
+          {showDetails ? "Hide details" : "Show details"}
+        </button>
+        <button
+          onClick={() => onRemove(student.id)}
+          className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 cursor-pointer transition">
+          Remove
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default StudentCard;

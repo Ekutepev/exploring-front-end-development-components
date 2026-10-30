@@ -14,32 +14,32 @@ import StudentCard from "./StudentCard";
 
 // Props
 interface StudentListProps {
-    students: Student[];
-    onRemove: (id: number) => void;
+  students: Student[];
+  onRemove: (id: number) => void;
 }
 
 // Component
 const StudentList = ({ students, onRemove }: StudentListProps) => {
-    // Empty list: show a message instead of the grid
-    if (students.length === 0) {
-        return (
-            <p className="rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center text-slate-600">
-                No students to show.
-            </p>
-        );
-    }
-
-    // Render: one StudentCard per student
+  // Empty list: show a message instead of the grid
+  if (students.length === 0) {
     return (
-        <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {students.map((student) => (
-                <StudentCard
-                    key={student.id}
-                    student={student}
-                    onRemove={onRemove} />
-            ))}
-        </div>
+      <p className="rounded-lg border border-dashed border-slate-300 bg-white p-6 text-center text-slate-600">
+        No students to show.
+      </p>
     );
+  }
+
+  // Render: one StudentCard per student
+  return (
+    <div className="grid grid-cols-1 items-start gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      {students.map((student) => (
+        <StudentCard
+          key={student.id}
+          student={student}
+          onRemove={onRemove} />
+      ))}
+    </div>
+  );
 };
 
 export default StudentList;

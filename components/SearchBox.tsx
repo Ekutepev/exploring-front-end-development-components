@@ -13,19 +13,19 @@
 "use client"
 // Props
 interface SearchBoxProps {
-    value: string;
-    onChange: (text: string) => void;
+  value: string;
+  onChange: (text: string) => void;
 }
 // Component
 const SearchBox = ({ value, onChange }: SearchBoxProps) => {
-    return (
-        <input
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            type="text"
-            placeholder="Search by Name"
-            className="w-full rounded-lg border border-slate-200 bg-white p-6 shadow-sm" />
-    )
+  return (
+    <input
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      type="text"
+      placeholder="Search by Name"
+      className="w-full rounded-lg border border-slate-200 bg-white p-6 shadow-sm" />
+  )
 };
 
 export default SearchBox;
